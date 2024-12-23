@@ -1,4 +1,6 @@
 import re
+import csv
+
 with open('task1-ru.txt', 'r', encoding='utf-8') as file:
     text = file.read()
 
@@ -8,25 +10,21 @@ print("Слова, начинающиеся с большой буквы:", capi
 words_with_colon = re.findall(r'\b\w+\b:', text)
 print("Слова, после которых стоит двоеточие:", words_with_colon)
 
-import re
 with open('task2.html', 'r', encoding='utf-8') as file:
     html_text = file.read()
 
 closing_tags = re.findall(r'</([a-zA-Z0-9]+)>', html_text)
-
 unique_closing_tags = set(closing_tags)
 print("Уникальные закрывающие теги:", unique_closing_tags)
 
-import re
-import csv
 with open('task3.txt', 'r', encoding='utf-8') as file:
     text = file.read()
 
-ids = re.findall(r'\d+', text)  
-surnames = re.findall(r'[А-Яа-я]+', text)  
-emails = re.findall(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', text)  
-dates = re.findall(r'\d{2}\.\d{2}\.\d{4}', text)  
-websites = re.findall(r'https?://[a-zA-Z0-9.-]+', text)  
+ids = re.findall(r'\d+', text)
+surnames = re.findall(r'[А-Яа-я]+', text)
+emails = re.findall(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', text)
+dates = re.findall(r'\d{2}\.\d{2}\.\d{4}', text)
+websites = re.findall(r'https?://[a-zA-Z0-9.-]+', text)
 
 max_len = max(len(ids), len(surnames), len(emails), len(dates), len(websites))
 
@@ -36,6 +34,7 @@ emails.extend([''] * (max_len - len(emails)))
 dates.extend([''] * (max_len - len(dates)))
 websites.extend([''] * (max_len - len(websites)))
 
+# Запись данных в CSV файл
 data = []
 for i in range(max_len):
     data.append([ids[i], surnames[i], emails[i], dates[i], websites[i]])
