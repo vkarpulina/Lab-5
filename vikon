@@ -34,7 +34,6 @@ emails.extend([''] * (max_len - len(emails)))
 dates.extend([''] * (max_len - len(dates)))
 websites.extend([''] * (max_len - len(websites)))
 
-# Запись данных в CSV файл
 data = []
 for i in range(max_len):
     data.append([ids[i], surnames[i], emails[i], dates[i], websites[i]])
